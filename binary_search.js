@@ -20,7 +20,6 @@ function binarySearch2(items, target) {
         return false;
     } else {
         let firstIndex = 0;
-        let lastIndex = items.length - 1;
         let middleIndex = ~~(items.length / 2)
 
         if(items[middleIndex] === target){

@@ -16,7 +16,15 @@
 //       '### '
 //       '####'
 
-function steps(n) {}
+function steps(n) {
+  for (let index = 1; index <= n; index++){
+    let result = "";
+
+    result += "#".repeat(index);
+    result += " ".repeat(n - index);
+    console.log(result);
+  }
+}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \

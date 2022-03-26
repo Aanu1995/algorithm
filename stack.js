@@ -1,29 +1,22 @@
 class Stack {
     constructor() {
-        this.top = 0;
         this.datastore = [];
     }
 
     push(element) {
-        this.top++;
         this.datastore.push(element);
     }
 
     peek() {
-        return this.datastore[this.top - 1];
+        return this.datastore[this.datastore.length - 1];
     }
 
     pop() {
-        if (this.top > 0) {
-            this.top--;
-            return this.datastore.pop();
-        } else {
-            return undefined;
-        }
+       return this.datastore.pop();
     }
 
     get length() {
-        return this.top;
+        return this.datastore.length;
     }
 
     clear() {

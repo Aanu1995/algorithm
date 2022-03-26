@@ -13,7 +13,13 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n) {}
+function pyramid(n) {
+  for (let index = 1; index <= n; index++){
+    let padding = " ".repeat(n - index);
+    let hashes = "#".repeat(index * 2 - 1);
+    console.log(padding + hashes + padding);
+  }
+}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \

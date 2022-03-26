@@ -1,76 +1,154 @@
+
 class Node {
-    constructor(data) {
-        this.data = data;
-        this.nextNode = null;
-    }
+	constructor(data, next) {
+		this.data = data;
+		this.next = next;
+	}
 }
 
 class LinkedList {
-    constructor() {
-        this.head = null;
+	constructor() {
+		this.head = null;
+		this.length = 0;
+	}
+
+	unshift(data) {
+		this.head = new Node(data, this.head);
+		this.length++;
+	}
+
+	getFirst() {
+		return this.head;
+    }
+    
+    size(){
+        return this.length;
     }
 
-    isEmpty() {
-        return this.head === null;
-    }
-
-    size() {
-        let current = this.head;
-        let count = 0;
-
-        while (current) {
-            count += 1;
-            current = current.nextNode;
+	getLast() {
+	   let current = this.head;
+        while (current && current.next) {
+            current = current.next;
         }
-        return count;
+        return current;
+	}
+
+	clear() {
+		this.head = null;
+		this.length = 0;
+	}
+
+	shift() {
+		const current = this.head;
+        if (current) {
+            this.head = current.next;
+            this.length--;
+        }
+        return current;
+	}
+
+	pop() {
+		let current = this.head;
+		if (!current) {
+			return null;
+		} else if (this.length === 1) {
+			return this.shift();
+		} else {
+			let lastNode = this.getLast();
+			while (current.next !== lastNode) {
+            	current = current.next;
+			}
+
+			current.next = null;
+			this.length--;
+
+			return lastNode;
+		}
+	}
+
+	push(data) {
+		let current = this.head;
+		if (!current) {
+			this.unshift(data);
+		} else {
+			let lastNode = this.getLast();
+			let node = new Node(data);
+			lastNode.next = node;
+			this.length++
+		}
+	}
+
+	get(index) {
+		if (index < 0 || index >= this.length) {
+			return null;
+		} else {
+			let counter = 0;
+			let current = this.head;
+			while (counter < index) {
+				current = current.next;
+				counter++
+			}
+			return current;
+		}
+	}
+
+	set(index, data) {
+		if (index < 0 || index >= this.length) {
+			return false;
+        } else {
+			let current = this.get(index);
+			current.data = data;
+            return true;
+		}
+	}
+
+	remove(index) {
+		 if (index < 0 || index >= this.length) {
+			return;
+		 } else if (index === 0) {
+			 return this.shift();
+		 } else {
+			 let prevNode = this.get(index - 1);
+			 let current = this.get(index);
+			 prevNode.next = prevNode.next.next;
+			 this.length--;
+			 return current;
+		 }
+	}
+
+	insert(index, data) {
+        if (index < 0 || index >= this.length) {
+			return false;
+        } else if (index === 0) {
+			this.unshift(data);
+			return true;
+        } else {
+             let prevNode = this.get(index - 1);
+			 let nextNode = this.get(index);
+			 prevNode.next = new Node(data, nextNode);
+			 this.length++;
+			 return true;
+        }
     }
 
-    add(data) {
-        let newNode = new Node(data);
-        newNode.nextNode = this.head;
-        this.head = newNode;
-    }
-
-    search(key) {
+    search(data) {
         let current = this.head;
         while (current) {
-            if (current.data === key) {
+            if (current.data === data) {
                 return current;
             } else {
-                current = current.nextNode;
+                current = current.next;
             }
         }
         return null;
     }
-
-    insert(data, index) {
-        if (index === 0) {
-            this.add(data);
-        } else if (index > this.size()) {
-            throw Error("Index out of bound");
-        } else {
-            let newNode = new Node(data);
-            let position = index;
-            let current = this.head;
-            while (position > 0) {
-                position -= 1;
-
-                if (position === 0) {
-                    let next = current.nextNode;
-                    newNode.nextNode = next;
-                    current.nextNode = newNode;
-                    return;
-                }
-                current = current.nextNode;
-            }
-        }
-    }
 }
 
+
 let list = new LinkedList();
-list.add(24);
-list.add(16);
-list.add(18);
-list.insert(47, 0);
+list.unshift(24);
+list.unshift(16);
+list.unshift(18);
+list.insert(0, 47);
 console.log(list.size());
 console.log(list.search(47));

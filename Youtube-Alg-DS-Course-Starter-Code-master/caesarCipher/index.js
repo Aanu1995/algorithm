@@ -8,7 +8,23 @@
 // caeserCipher("abcd", 100) === "wxyz";
 // caeserCipher("gurer ner 9 qbtf!", 13) === "there are 9 dogs!"
 
-function caesarCipher(str, shift) {}
+function caesarCipher(str, shift) {
+  let alphabets = "abcdefghijklmnopqrstuvwxyz";
+  let result = "";
+
+  for (let index = 0; index < str.length; index++) {
+    const char = str[index];
+    const charIndex = alphabets.indexOf(char);
+
+    if (charIndex >= 0) {
+      let newCharIndex = (charIndex + shift) % 26;
+      result += alphabets[newCharIndex];
+     } else {
+      result += char;
+    }
+  }
+  return result;
+}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
