@@ -107,7 +107,7 @@ class LinkedList {
 		 } else {
 			 let prevNode = this.get(index - 1);
 			 let current = this.get(index);
-			 prevNode.next = current.next.next;
+			 prevNode.next = prevNode.next.next;
 			 this.length--;
 			 return current;
 		 }
@@ -121,8 +121,7 @@ class LinkedList {
 			return true;
         } else {
              let prevNode = this.get(index - 1);
-			 let nextNode = this.get(index);
-			 prevNode.next = new Node(data, nextNode);
+			 prevNode.next = new Node(data, prevNode.next);
 			 this.length++;
 			 return true;
         }

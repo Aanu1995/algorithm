@@ -5,7 +5,6 @@ class Node {
 		this.next = next;
 	}
 }
-
 class LinkedList {
 	constructor() {
 		this.head = null;
@@ -72,8 +71,7 @@ class LinkedList {
 			this.unshift(data);
 		} else {
 			let lastNode = this.getLast();
-			let node = new Node(data);
-			lastNode.next = node;
+			lastNode.next = new Node(data);
 			this.length++
 		}
 	}
@@ -124,8 +122,7 @@ class LinkedList {
 			return true;
         } else {
              let prevNode = this.get(index - 1);
-			 let nextNode = this.get(index);
-			 prevNode.next = new Node(data, nextNode);
+			 prevNode.next = new Node(data, prevNode.nextNode);
 			 this.length++;
 			 return true;
         }

@@ -7,18 +7,53 @@ function swap(arr, i, j) {
 
 // bubbleSort works by having sorted data accumulate at end of array
 function bubbleSort(arr) {
-  for (let index = 0; index < arr.length; index++){
-    for (let j = 0; j <= arr.length; j++){
-      if (arr[j] > arr[j+1]) {
-        swap(arr, j, j + 1);
+  const array = arr.slice();
+  for (let index = 0; index < (array.length - 1); index++){
+    for (let j = 0; j < (array.length - index - 1); j++){
+      if (array[j] > arr[j+1]) {
+        swap(array, j, j + 1);
       }
     }
   }
-  return arr;
+  return array;
 }
 
 //selectionSort works by having sorted data accumulate at start of array
-function selectionSort(arr) {}
+function selectionSort(arr) {
+  const array = arr.slice();
+  for (let index = 0; index < (array.length - 1); index++){
+    let swapIndex = index;
+    for (let j = (index + 1); j < array.length; j++){
+      if (array[j] < array[swapIndex]) {
+        swapIndex = j;
+      }
+    }
+
+    swap(array, index, swapIndex);
+  }
+  return array;
+}
+
+function quickSort(arr) {
+  if (arr.length <= 1) {
+    return arr;
+  }
+
+  const pivot = arr[arr.length - 1];
+  let leftArr = [];
+  let rightArr = [];
+
+  for (let index = 0; index < (arr.length - 1); index++){
+    const element = arr[index];
+    if (element < pivot) {
+      leftArr.push(element);
+    } else {
+      rightArr.push(element);
+    }
+  }
+
+  return [...quickSort(leftArr), pivot, ...quickSort(rightArr)];
+}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
