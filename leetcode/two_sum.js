@@ -1,5 +1,4 @@
 
-
 function twoSum(nums, target) {
     let map = {};
     for (let index = 0; index < nums.length; index++){

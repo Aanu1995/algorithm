@@ -8,14 +8,14 @@ Examples
 */
 
 function noDuplicates(str) {
-  if (str.length > 128) {
+  if (!str || str.length > 128) {
     return false;
   }
 
   const charSet = {};
 
   for (const char of str) {
-    if (char in charSet) {
+    if (charSet[char]) {
       return false;
     }
     charSet[char] = true;

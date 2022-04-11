@@ -7,29 +7,24 @@ Ace Carr --> true (Can be arranged to Race Car, which is a palindrome)
 */
 
 function canFormPalindrome(phrase) {
-  const charCount = {};
+    let str = phrase.replace(/\W/ig, "").toLowerCase();
 
-  // Fill out char count
-  for (const char of phrase.toLowerCase()) {
-    // Space not counted for character count
-    if (char !== " ") {
-      charCount[char] = charCount[char] + 1 || 1;
+    let charCount = {};
+
+    for (const char of str) {
+        charCount[char] = charCount[char] + 1 || 1;
     }
-  }
 
-  //Check there is only ONE odd count at most
-  let oddCount = 0;
-  for (const count of Object.values(charCount)) {
-    if (count % 2 !== 0) {
-      if (oddCount >= 1) {
-        return false;
-      }
-
-      oddCount += 1;
+    let oddCount = 0;
+    for (const count of Object.values(charCount)) {
+        if (count % 2 !== 0) {
+            if (oddCount >= 1) {
+                return false;
+            }
+            oddCount++;
+        }
     }
-  }
-
-  return true;
+    return true;
 }
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______

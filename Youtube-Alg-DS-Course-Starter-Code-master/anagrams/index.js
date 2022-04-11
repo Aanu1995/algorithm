@@ -14,7 +14,7 @@ function anagrams(stringA, stringB) {
   let strA = stringA.toLowerCase().replace(/\W/g, "");
   let strB = stringB.toLowerCase().replace(/\W/g, "");
 
-  if (strA.length != strB.length) {
+  if (strA.length !== strB.length) {
     return false;
   }
 

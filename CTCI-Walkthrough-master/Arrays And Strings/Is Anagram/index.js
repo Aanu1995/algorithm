@@ -9,9 +9,25 @@ Examples
 */
 
 function isAnagram(s, t) {
-  if (s.length !== t.length) return false;
+  let charMap = {};
 
-  return s.split("").sort().join("") === t.split("").sort().join("");
+  if (s.length !== t.length) {
+    return false;
+  }
+
+  for (const char of s) {
+     charMap[char] = charMap[char] + 1 || 1;
+  }
+
+  for (const char of t) {
+    if (!charMap[char]) {
+      return false;
+    } else {
+      charMap[char] = charMap[char] - 1;
+    }
+  }
+
+  return true;
 }
 
 // function isAnagram(s, t) {
